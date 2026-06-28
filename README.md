@@ -1,65 +1,161 @@
-Mini Spreadsheet Engine
-Overview
-Mini Spreadsheet Engine is a browser-based spreadsheet application built using HTML5, CSS3, and Vanilla JavaScript without the use of external libraries or frameworks.
+# Grok Spreadsheet Project
 
-The aim of this project is to demonstrate the core principles behind spreadsheet software such as Microsoft Excel and Google Sheets by allowing users to enter numbers, text, and formulas into cells. The spreadsheet evaluates formulas, updates dependent cells automatically, handles common spreadsheet errors, and provides a clean user interface.
+A browser-based spreadsheet application built using **HTML5**, **CSS3**, and **Vanilla JavaScript**.
 
-Unlike a commercial spreadsheet application, this project focuses on demonstrating the logic behind spreadsheet engines in a way that is easier to understand and maintain.
+---
 
-Team Members
-This project was completed collaboratively by:
+# Project Overview
 
-Bheki Buthelezi
+The **Grok Spreadsheet Project** is a lightweight spreadsheet application developed to demonstrate the core principles behind spreadsheet software such as Microsoft Excel and Google Sheets.
 
-Sijabulile Ncube
+The application allows users to:
 
-Bafana Ndlovu
+- Enter numbers, text and formulas
+- Perform mathematical calculations
+- Reference values from other cells
+- Automatically recalculate formulas when dependent values change
+- Display spreadsheet errors
+- Navigate using both the mouse and keyboard
 
-Mhlengi Ngwenya
+The project was developed using only HTML, CSS and Vanilla JavaScript without relying on external frameworks or libraries.
 
-Bao Kekana
+---
 
-Team Collaboration
-The project was developed using a collaborative Git workflow.
+# Live Demo
 
-Each team member contributed through:
+## Netlify Deployment
 
-Creating feature branches
+**Live Application**
 
-Writing and improving code
+Add your Netlify deployment link here.
 
-Reviewing ideas during team meetings
+```text
+https://your-netlify-link.netlify.app
+```
 
-Testing functionality
+---
 
-Improving readability and maintainability
+# Loom Presentation
 
-Preparing documentation
+Add your Loom presentation link here.
 
-Assisting with the project presentation
+```text
+https://www.loom.com/share/your-video-link
+```
 
-The final project represents the combined effort of the entire team.
+---
 
-Technologies Used
-HTML5
+# Team Members
 
-CSS3
+- Bheki Buthelezi
+- Sijabulile Ncube
+- Bafana Ndlovu
+- Mhlengi Ngwenya
+- Bao Kekana
 
-Vanilla JavaScript (ES6)
+---
 
-DOM Manipulation
+# Team Collaboration
 
-Browser Local Storage (where applicable)
+This project was completed using a collaborative GitHub workflow.
 
-Git
+Every team member contributed throughout the project by sharing ideas, writing code, participating in meetings, testing functionality and helping refine the final application.
 
-GitHub
+---
 
-Visual Studio Code
+## Initial Repository
 
-Project Structure
-MiniSpreadsheet
+The project began with an initial GitHub repository created by **Bheki Buthelezi**.
 
+Bheki also introduced the team to the GitHub workflow by demonstrating:
+
+- Repository cloning
+- Creating feature branches
+- Making commits
+- Pushing changes to GitHub
+- Collaborative development using Git
+
+This provided the foundation for how the team worked throughout the project.
+
+---
+
+## Feature Branch Development
+
+Before deciding on the final solution, every team member created their own feature branch from the initial repository.
+
+Feature branches were created by:
+
+- Bheki Buthelezi
+- Sijabulile Ncube
+- Bafana Ndlovu
+- Mhlengi Ngwenya
+- Bao Kekana
+
+Each branch explored different layouts, implementations and ideas.
+
+This gave the team the opportunity to compare different approaches before selecting the final direction of the project.
+
+---
+
+## Google Meet Collaboration
+
+Throughout the project, the team held several Google Meet sessions.
+
+These meetings were used to:
+
+- Discuss different spreadsheet ideas
+- Compare implementations from each feature branch
+- Decide which solution best met the project requirements
+- Solve technical challenges together
+- Review progress
+- Refine the final application
+- Prepare for the presentation
+
+Every important technical decision was discussed and agreed upon collectively.
+
+---
+
+## Creating the Final Repository
+
+After reviewing the different feature branches and agreeing on the final direction, the team created a **new GitHub repository** for the final submission.
+
+The new repository combined the best ideas from the different branches.
+
+From that point onwards, the project was refined collaboratively through continuous discussion, testing and improvements until the final version was completed.
+
+---
+
+## Team Decisions
+
+As a team we collectively decided:
+
+- Which spreadsheet implementation to use
+- Which ideas from the different feature branches would be included
+- Which deployment platform to use (Netlify or Vercel)
+- Which screen-recording software would be used for the Loom presentation
+- How presentation responsibilities would be shared
+- How the final repository would be organised
+
+These decisions ensured that every team member contributed to the final project.
+
+---
+
+# Technologies Used
+
+- HTML5
+- CSS3
+- Vanilla JavaScript (ES6)
+- DOM Manipulation
+- Git
+- GitHub
+- Visual Studio Code
+
+---
+
+# Project Structure
+
+```text
+Grok Spreadsheet Project
 │
 ├── index.html
 ├── styles.css
@@ -67,360 +163,227 @@ MiniSpreadsheet
 ├── engine.js
 ├── app.js
 └── README.md
-Each file has a specific responsibility.
+```
 
-Separating responsibilities keeps the project easier to understand, debug and extend.
+Each file has a dedicated responsibility, making the application easier to understand and maintain.
 
-Project Architecture
-The application follows a simple layered architecture.
+---
 
+# Application Architecture
+
+```text
 User
-
-↓
-
-User Interface
-(index.html)
-
-↓
-
-Styling
-(styles.css)
-
-↓
-
-Application Logic
-(app.js)
-
-↓
-
-Spreadsheet Engine
-(engine.js)
-
-↓
-
-Configuration
-(config.js)
-Each layer has one responsibility.
-
-File Breakdown
+ │
+ ▼
 index.html
-This file creates the user interface.
-
-It contains:
-
-Application heading
-
-Formula bar
-
-Selected cell indicator
-
-Spreadsheet container
-
-It also loads the JavaScript files in the correct order.
-
-config.js
-
-↓
-
-engine.js
-
-↓
-
-app.js
-This order is important because:
-
-app.js depends on Engine.
-
-Engine depends on CONFIG.
-
-Loading them in another order would cause the application to fail.
-
+(User Interface)
+ │
+ ▼
 styles.css
-This file controls the appearance of the spreadsheet.
-
-It is responsible for:
-
-Layout
-
-Responsive design
-
-Formula bar styling
-
-Grid styling
-
-Selected cell highlighting
-
-Error colouring
-
-Text alignment
-
-Mobile responsiveness
-
-Numbers are right aligned while text is left aligned to improve readability.
-
-Error cells are displayed in red to make them easy to identify.
-
-config.js
-This file stores all configurable settings for the spreadsheet.
-
-Examples include:
-
-Number of columns
-
-Number of rows
-
-Spreadsheet error messages
-
-Columns = 10
-
-Rows = 20
-Keeping these settings in one file means the spreadsheet can easily be resized without changing the rest of the application.
-
-engine.js
-This is the heart (brain) of the spreadsheet.
-
-It contains all calculation logic.
-
-The engine is completely independent from the user interface.
-
-Its responsibilities include:
-
-Storing cell data
-
-Evaluating formulas
-
-Tokenizing formulas
-
-Parsing expressions
-
-Performing calculations
-
-Handling operator precedence
-
-Supporting spreadsheet functions
-
-Detecting errors
-
-Detecting circular references
-
-Returning calculated values
-
-The engine never interacts directly with HTML.
-
-Instead, it exposes a small public API used by app.js.
-
+(Presentation Layer)
+ │
+ ▼
 app.js
-This file controls everything the user sees and interacts with.
+(User Interaction)
+ │
+ ▼
+engine.js
+(Spreadsheet Logic)
+ │
+ ▼
+config.js
+(Application Settings)
+```
+
+The project follows the principle of **Separation of Concerns** by giving each file a single responsibility.
+
+---
+
+# File Responsibilities
+
+## index.html
+
+Responsible for:
+
+- Building the application layout
+- Displaying the formula bar
+- Displaying the active cell reference
+- Creating the spreadsheet container
+- Loading JavaScript files in the correct order
+
+---
+
+## styles.css
+
+Responsible for:
+
+- Overall application layout
+- Spreadsheet styling
+- Formula bar styling
+- Selected cell highlighting
+- Error styling
+- Responsive design
+- Text alignment
+
+---
+
+## config.js
+
+Stores configurable application settings including:
+
+- Number of rows
+- Number of columns
+- Spreadsheet error messages
+
+Keeping these settings in one file allows the spreadsheet to be resized without modifying the application logic.
+
+---
+
+## engine.js
+
+The spreadsheet engine is the core of the application.
 
 Its responsibilities include:
 
-Creating the spreadsheet grid
+- Storing cell values
+- Evaluating formulas
+- Tokenizing formulas
+- Parsing mathematical expressions
+- Resolving cell references
+- Performing calculations
+- Detecting circular references
+- Handling spreadsheet errors
+- Returning calculated results
 
-Handling mouse clicks
+The engine performs all calculations independently of the user interface.
 
-Handling keyboard input
+---
 
-Updating the formula bar
+## app.js
 
-Refreshing the display
+This file manages user interaction.
 
-Moving between cells
+Responsibilities include:
 
-Highlighting the selected cell
+- Building the spreadsheet grid
+- Selecting cells
+- Updating the formula bar
+- Handling keyboard navigation
+- Refreshing displayed values
+- Requesting calculations from the engine
 
-Unlike engine.js, app.js performs no mathematical calculations.
+app.js never performs calculations itself. Whenever a calculation is required, it asks engine.js to calculate the result.
 
-Whenever it needs a value, it asks the Engine.
+---
 
-This separation makes the project easier to maintain.
+# Features
 
-Spreadsheet Features
-The spreadsheet supports:
+The spreadsheet currently supports:
 
-✅ Numbers
+- Numbers
+- Text
+- Cell references
+- Mathematical formulas
+- Addition
+- Subtraction
+- Multiplication
+- Division
+- Parentheses
+- SUM()
+- AVG()
+- Automatic recalculation
+- Formula bar editing
+- Keyboard navigation
+- Spreadsheet error handling
+- Responsive layout
 
-Example
+---
 
-25
-✅ Text
+# Example
 
-Example
+Input
 
-Hello
-✅ Formulas
-
-Example
-
-=A1+B1
-✅ Addition
-
-=A1+B1
-✅ Subtraction
-
-=A1-B1
-✅ Multiplication
-
-=A1*B1
-✅ Division
-
-=A1/B1
-✅ Parentheses
-
-=(A1+B1)*2
-Built-in Functions
-SUM
-Adds all values within a selected range.
-
-Example
-
-=SUM(A1:A5)
-AVG
-Calculates the average value of a range.
-
-Example
-
-=AVG(A1:A5)
-Automatic Recalculation
-One of the most important spreadsheet features is automatic recalculation.
-
-Example:
-
+```text
 A1 = 5
 
 B1 = 10
 
 C1 = =A1+B1
-C1 displays
+```
 
+Output
+
+```text
 15
-If A1 changes to
+```
 
-20
-then
+If A1 changes to **20**, C1 automatically updates to **30** because the spreadsheet recalculates dependent formulas.
 
-C1 automatically becomes 30
-without editing the formula.
+---
 
-Formula Parsing
-Instead of using JavaScript's eval() function, the spreadsheet evaluates formulas itself.
+# Spreadsheet Errors
 
-The process follows four stages:
+| Error | Meaning |
+|--------|---------|
+| #DIV/0! | Division by zero |
+| #VALUE! | Arithmetic performed on text |
+| #CIRCULAR! | Circular reference detected |
+| #ERROR! | Invalid formula syntax |
 
-Step 1
-Tokenize
+---
 
-The formula is split into smaller pieces.
+# Keyboard Shortcuts
 
-Example
+| Key | Action |
+|------|--------|
+| Enter | Save and move to the next row |
+| Arrow Keys | Navigate between cells |
+| Delete | Clear selected cell |
+| Backspace | Clear selected cell |
+| Escape | Cancel editing |
+| Double Click | Edit using the formula bar |
 
-=A1+10*2
-becomes
+---
 
-A1
+# Future Enhancements
 
-+
+The current implementation provides a strong foundation for a browser-based spreadsheet.
 
-10
+Future improvements could include:
 
-*
+- Additional spreadsheet functions such as MIN(), MAX() and COUNT()
+- Copy and paste functionality
+- Undo and redo support
+- CSV import and export
+- Formula auto-complete
+- Cell formatting (fonts, colours and borders)
+- Larger configurable spreadsheets
+- Improved accessibility features
+- Performance optimisation for larger datasets
 
-2
-Step 2
-Parse
+These enhancements would extend the application's capabilities while building on the modular architecture already developed by the team.
 
-The parser reads the tokens while respecting mathematical precedence.
+---
 
-Multiplication and division happen before addition and subtraction.
+# Reflection
 
-Step 3
-Resolve Cell References
+This project strengthened our understanding of:
 
-When a formula references another cell, the engine retrieves that cell's value before completing the calculation.
+- JavaScript fundamentals
+- DOM manipulation
+- Formula parsing
+- Modular application design
+- Git and GitHub collaboration
+- Feature branch workflows
+- Team communication
+- Collaborative software development
 
-Step 4
-Display Result
+Working together allowed us to combine ideas, review each other's work, refine our implementation through discussion and deliver a solution that reflects the contributions of every team member.
 
-The calculated value is returned to app.js and displayed in the spreadsheet.
+---
 
-Error Handling
-The spreadsheet detects several common spreadsheet errors.
+# Acknowledgements
 
-Division by Zero
-=A1/0
-Displays
+We would like to acknowledge every member of the team for their commitment throughout the project.
 
-#DIV/0!
-Invalid Text Arithmetic
-A1 = Hello
-
-B1 = =A1+5
-Displays
-
-#VALUE!
-Circular References
-Example
-
-A1 = =B1
-
-B1 = =A1
-Displays
-
-#CIRCULAR!
-Invalid Formula
-Incorrect syntax produces
-
-#ERROR!
-Keyboard Navigation
-The spreadsheet supports keyboard shortcuts.
-
-Key	Action
-Enter	Save current cell and move down
-Arrow Keys	Move between cells
-Delete	Clear selected cell
-Backspace	Clear selected cell
-Escape	Cancel editing
-Double Click	Edit cell using formula bar
-Why Separate app.js and engine.js?
-This project follows the principle of Separation of Concerns.
-
-engine.js focuses only on spreadsheet calculations.
-
-app.js focuses only on displaying information and responding to user actions.
-
-This makes the project:
-
-Easier to understand
-
-Easier to test
-
-Easier to maintain
-
-Easier to extend with new features
-
-Future Improvements
-Possible future enhancements include:
-
-Copy and Paste
-
-Undo / Redo
-
-Additional spreadsheet functions
-
-CSV Import
-
-CSV Export
-
-Dark Mode
-
-Formula autocomplete
-
-Larger configurable grids
-
-Cell formatting (bold, colours, fonts)
-
-Conclusion
-Mini Spreadsheet Engine demonstrates the core principles behind spreadsheet software using only HTML, CSS and Vanilla JavaScript.
-
-By separating configuration, spreadsheet logic and user interface into different modules, the project remains organised, readable and maintainable.
-
-The project also provided valuable experience in collaborative software development using Git, GitHub, feature branches, code reviews, and team communication.
+From creating the initial repository and feature branches, to participating in Google Meet discussions, refining the application, deciding on deployment and presentation tools, and preparing the final submission, every team member contributed to the success of the Grok Spreadsheet Project.
