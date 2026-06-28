@@ -14,6 +14,8 @@
   const gridWrap   = document.getElementById('grid');         // the box the table goes in
   const formulaBar = document.getElementById('formula-bar');  // the text box above the grid
   const cellLabel  = document.getElementById('cell-label');   // the little "A1" label next to it
+  const clearBtn   = document.getElementById('clear-btn');    // the "Clear" button
+  const saveStatus = document.getElementById('save-status');  // the little "Saved ✓" note
 
   const ERROR_CODES = Object.values(CONFIG.ERRORS);  // the list of error texts, e.g. ["#CIRCULAR!", ...]
   let selected = null;     // the name of the cell currently clicked, e.g. "A1" (null = none yet)
@@ -76,9 +78,11 @@
   // Called when the user finishes an edit: give the text to the engine to
   // store, then redraw the grid so every affected cell updates.
   function commit() {
-    if (!selected) return;                        // nothing selected = nothing to do
+    if (!selected) return;                              // nothing selected = nothing to do
+    if (formulaBar.value === Engine.getRaw(selected)) return;  // unchanged = no need to save
     Engine.setRaw(selected, formulaBar.value);
     refreshAll();
+    showSaved();                                        // flash the "Saved ✓" note
   }
 
   // Go through EVERY cell and ask the engine what it should show now, then put
@@ -104,6 +108,17 @@
     formulaBar.setSelectionRange(end, end);
   }
 
+  // Briefly flash a little "Saved ✓" note so the user can see their work was
+  // stored. Each save resets the timer, so it stays up while you keep typing,
+  // then fades away about 1.5 seconds after you stop.
+  let saveTimer = null;
+  function showSaved(message = 'Saved ✓') {
+    saveStatus.textContent = message;
+    saveStatus.classList.add('visible');
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => saveStatus.classList.remove('visible'), 1500);
+  }
+
   // ----- keys pressed WHILE typing in the formula bar -----
   formulaBar.addEventListener('keydown', (e) => {
     // Enter = save this cell and drop down to the one below (like real spreadsheets).
@@ -123,9 +138,12 @@
 
     // Backspace or Delete empties the cell.
     if (e.key === 'Backspace' || e.key === 'Delete') {
-      Engine.setRaw(selected, '');
+      if (Engine.getRaw(selected) !== '') {   // only if there was something to clear
+        Engine.setRaw(selected, '');
+        refreshAll();
+        showSaved();
+      }
       formulaBar.value = '';
-      refreshAll();
       e.preventDefault();
       return;
     }
@@ -159,6 +177,19 @@
     select(ref);
     cells[ref].scrollIntoView({ block: 'nearest', inline: 'nearest' });  // scroll it into view if needed
   }
+
+  // The "Clear" button empties every cell (and the saved copy), after a quick
+  // "are you sure?" so it isn't pressed by accident.
+  clearBtn.addEventListener('click', () => {
+    if (!window.confirm('Clear the whole sheet? This cannot be undone.')) return;
+    Engine.clearAll();
+    selected = null;
+    cellLabel.textContent = '—';   // reset the label back to a dash "—"
+    formulaBar.value = '';
+    Object.values(cells).forEach((td) => td.classList.remove('selected'));
+    refreshAll();
+    showSaved('Cleared ✓');
+  });
 
   build();   // kick everything off: draw the grid
 })();        // The "()" runs this whole setup function right away.
