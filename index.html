@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Spreadsheet</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Mini Spreadsheet</h1>
+  </header>
+
+  <!-- The formula bar: shows exactly what was TYPED in the selected cell
+       (the cell on the grid shows the calculated result instead). -->
+  <div class="formula-bar-row">
+    <span id="cell-label" class="cell-label">&mdash;</span>
+    <input
+      id="formula-bar"
+      type="text"
+      autocomplete="off"
+      placeholder="Select a cell, then type a number, text, or =formula"
+    />
+  </div>
+
+  <main id="grid" class="grid-wrap"></main>
+
+  <!-- The order here matters! config.js must load first (it makes CONFIG),
+       then engine.js (it makes Engine), then app.js (which uses both to draw
+       the grid). Loading them out of order would break the page. -->
+  <script src="config.js"></script>
+  <script src="engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

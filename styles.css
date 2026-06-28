@@ -1,0 +1,110 @@
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #1f2328;
+  background: #f6f8fa;
+
+  /* Stack header, formula bar, and grid in a column that fills the screen.
+     100dvh tracks the *visible* height on mobile (where the browser's
+     address bar shows/hides); 100vh is the fallback for older browsers. */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+}
+
+.app-header { padding: 12px 16px 4px; }
+.app-header h1 { margin: 0; font-size: 18px; }
+
+/* ---- formula bar ---- */
+.formula-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #fff;
+  border-top: 1px solid #d0d7de;
+  border-bottom: 1px solid #d0d7de;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.cell-label {
+  min-width: 48px;
+  text-align: center;
+  font-weight: 600;
+  color: #57606a;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  padding: 5px 6px;
+  background: #f6f8fa;
+}
+#formula-bar {
+  flex: 1;
+  font: 14px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+  padding: 6px 8px;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+}
+#formula-bar:focus { outline: 2px solid #0969da; outline-offset: -1px; }
+
+/* ---- grid ---- */
+/* flex:1 makes the grid soak up all leftover height; min-height:0 lets a
+   flex child actually shrink so its own overflow:auto scrollbar appears
+   (without it, flex items refuse to shrink below their content size). */
+.grid-wrap { padding: 16px; overflow: auto; flex: 1; min-height: 0; }
+
+table { border-collapse: collapse; }
+th, td { border: 1px solid #d0d7de; }
+
+thead th, tbody th {
+  background: #eaeef2;
+  color: #57606a;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  position: sticky;
+}
+thead th { top: 0; z-index: 3; }
+tbody th { left: 0; z-index: 2; min-width: 38px; }
+thead th:first-child { left: 0; z-index: 4; }
+
+/* ---- cells ---- */
+td.cell {
+  min-width: 92px;
+  max-width: 92px;
+  height: 26px;
+  padding: 4px 6px;
+  font: 13px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: #fff;
+  text-align: right;          /* numbers line up on the right */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: cell;
+}
+td.cell.text  { text-align: left; }                 /* words read left-to-right */
+td.cell.error { color: #cf222e; font-weight: 600; } /* errors stand out in red  */
+td.cell.selected {
+  outline: 2px solid #0969da;
+  outline-offset: -2px;
+  background: #ddf4ff;
+}
+
+/* ---- responsive: tighten things up on narrow screens ---- */
+/* The grid still scrolls sideways (overflow:auto above); these rules just
+   reclaim space and keep text legible when the viewport gets small. */
+@media (max-width: 600px) {
+  .app-header { padding: 8px 10px 2px; }
+  .app-header h1 { font-size: 16px; }
+
+  .formula-bar-row { padding: 6px 10px; }
+  .grid-wrap { padding: 8px; }
+
+  /* let cells get a little narrower so more fit before scrolling */
+  td.cell { min-width: 70px; max-width: 70px; font-size: 12px; }
+  thead th, tbody th { font-size: 11px; }
+}
