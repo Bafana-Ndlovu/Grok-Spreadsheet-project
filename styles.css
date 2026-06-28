@@ -51,6 +51,32 @@ body {
 }
 #formula-bar:focus { outline: 2px solid #0969da; outline-offset: -1px; }
 
+.clear-btn {
+  flex: none;
+  font: 13px/1 system-ui, sans-serif;
+  font-weight: 600;
+  color: #57606a;
+  padding: 7px 12px;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  background: #f6f8fa;
+  cursor: pointer;
+}
+.clear-btn:hover { background: #eaeef2; color: #1f2328; }
+.clear-btn:active { background: #e1e6eb; }
+
+.save-status {
+  flex: none;
+  min-width: 56px;                 /* reserve room so the bar doesn't jump */
+  font: 12px/1 system-ui, sans-serif;
+  font-weight: 600;
+  color: #1a7f37;                  /* a calm "success" green */
+  white-space: nowrap;
+  opacity: 0;                      /* hidden until a save happens */
+  transition: opacity 0.2s ease;
+}
+.save-status.visible { opacity: 1; }
+
 /* ---- grid ---- */
 /* flex:1 makes the grid soak up all leftover height; min-height:0 lets a
    flex child actually shrink so its own overflow:auto scrollbar appears

@@ -6,6 +6,7 @@
 //   Engine.getDisplay(ref)     give back what to SHOW in the grid a number, text, or an error.
 //   Engine.colName(i)          turn a column number into a letter: 0 -> "A", 9 -> "J"
 //   Engine.colIndex(s)         turn a column letter into a number: "A" -> 0, "J" -> 9
+//   Engine.clearAll()          wipe the whole sheet (used by the Clear button).
 
 // Lets explain the whole idea inn plain English to Zinhle:
 
@@ -112,6 +113,40 @@ const Engine = (function () {
   }
 
 
+  // 'Remembering the sheet between refreshes (localStorage)'
+
+  // localStorage is a little box the BROWSER keeps even after you refresh or
+  // close the page. We save the whole "raw" object into it as text (JSON), and
+  // read it back when the page opens. Everything is wrapped in try/catch
+  // because storage can be switched off (e.g. private browsing) — if it fails
+  // we just carry on with an empty sheet instead of crashing.
+  function save() {
+    try {
+      localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(raw));
+    } catch (e) {
+      // storage blocked or full -> simply don't save
+    }
+  }
+
+  function load() {
+    try {
+      const saved = localStorage.getItem(CONFIG.STORAGE_KEY);
+      if (!saved) return;                       // nothing was saved before
+      const data = JSON.parse(saved);           // turn the saved text back into an object
+      for (const ref in data) raw[ref] = data[ref];
+    } catch (e) {
+      // the saved data was unreadable -> start with a fresh, empty sheet
+    }
+  }
+
+  // Empty every cell (used by the "Clear" button) and overwrite the saved copy.
+  function clearAll() {
+    for (const ref in raw) delete raw[ref];
+    cache = {};
+    save();                                     // save the now-empty sheet
+  }
+
+
   // 'Saving and reading the text the user typed'
 
   // Called when the user finishes typing in a cell. We just store the text.
@@ -121,8 +156,9 @@ const Engine = (function () {
     else raw[ref] = value;
     // One change might affect lots of other formulas, so the simplest safe
     // thing is to forget ALL the remembered answers. They get worked out
-    // again the next time the grid is shown. 
+    // again the next time the grid is shown.
     cache = {};
+    save();                 // keep the sheet saved so a refresh doesn't lose it
   }
 
   // Give back the exact text the user typed (used to fill the formula bar).
@@ -411,7 +447,11 @@ const Engine = (function () {
     throw new FormulaError(CONFIG.ERRORS.SYNTAX);   // a function name we don't recognise
   }
 
-  // This is the engine's "public counter": only these five functions are
-  // handed out for app.js to use.
-  return { colName, colIndex, setRaw, getRaw, getDisplay };
+  // When the engine first starts up, load any sheet that was saved last time
+  // so the user's work is still there after a refresh.
+  load();
+
+  // This is the engine's "public counter": only these functions are handed
+  // out for app.js to use.
+  return { colName, colIndex, setRaw, getRaw, getDisplay, clearAll };
 })();   // The "()" runs the function right now, building Engine.

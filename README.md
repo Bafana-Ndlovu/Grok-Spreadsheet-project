@@ -234,6 +234,7 @@ Stores configurable application settings including:
 - Number of rows
 - Number of columns
 - Spreadsheet error messages
+- The localStorage key used to save the sheet
 
 Keeping these settings in one file allows the spreadsheet to be resized without modifying the application logic.
 
@@ -254,6 +255,7 @@ Its responsibilities include:
 - Detecting circular references
 - Handling spreadsheet errors
 - Returning calculated results
+- Saving and loading the sheet (localStorage)
 
 The engine performs all calculations independently of the user interface.
 
@@ -296,6 +298,8 @@ The spreadsheet currently supports:
 - Keyboard navigation
 - Spreadsheet error handling
 - Responsive layout
+- Automatic saving with localStorage (your work stays after a refresh)
+- Clear button to reset the entire sheet
 
 ---
 
