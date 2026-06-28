@@ -19,6 +19,8 @@ The application allows users to:
 
 The project was developed using only HTML, CSS and Vanilla JavaScript without relying on external frameworks or libraries.
 
+This project uses Local Storage to save spreadsheet data in the browser. It allows users to keep their changes even after refreshing or closing the browser, providing a simple way to persist data without using a database.
+
 ---
 
 # Live Demo
