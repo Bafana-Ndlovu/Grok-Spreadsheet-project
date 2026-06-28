@@ -27,7 +27,7 @@ The project was developed using only HTML, CSS and Vanilla JavaScript without re
 
 **Live Application**
 
-Add your Netlify deployment link here.
+View the link below:
 
 ```text
 https://your-netlify-link.netlify.app
@@ -37,7 +37,7 @@ https://your-netlify-link.netlify.app
 
 # Loom Presentation
 
-Add your Loom presentation link here.
+View the link below:
 
 ```text
 https://www.loom.com/share/your-video-link
