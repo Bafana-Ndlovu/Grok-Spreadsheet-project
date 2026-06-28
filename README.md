@@ -30,7 +30,7 @@ The project was developed using only HTML, CSS and Vanilla JavaScript without re
 View the link below:
 
 ```text
-https://your-netlify-link.netlify.app
+https://grok-spreadsheet-project.netlify.app/
 ```
 
 ---
