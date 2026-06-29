@@ -49,11 +49,11 @@ https://www.loom.com/share/809b037d1a3046e987cdd3f3fe1ed5c3
 
 # Team Members
 
-- Bheki Buthelezi
-- Sijabulile Ncube
-- Bafana Ndlovu
-- Mhlengi Ngwenya
-- Bao Kekana
+- Bheki Buthelezi.
+- Sijabulile Ncube.
+- Bafana Ndlovu.
+- Mhlengi Ngwenya.
+- Bao Kekana.
 
 ---
 
